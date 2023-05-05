@@ -1,13 +1,7 @@
-const fs = require('fs')
-const path = require('path');
+const fs = require('fs');
 
-
-
-fs.readFile('01-read-file/text.txt', 'utf8', (err,data)=>{
-    if (err) throw err;
-    console.log(data)
-})
-
-
-console.log(path.dirname(__filename));
-console.log(path.basename(__filename));
+const toRead=fs.createReadStream('01-read-file/text.txt','utf8');
+let textToRead=''; // in case file text is to big, it will be connected to this variable.
+toRead.on('data', chunk=> console.log(textToRead+= chunk))
+// toRead.on('end',()=> console.log(textToRead.length)) // to understand how text is big. This function is opational.
+toRead.on('error', error=>console.log(error.message))
