@@ -10,11 +10,13 @@ fs.writeFile('02-write-file/task2.txt',' ', function(err,file){
     console.log('new txt file created');
 
     stdout.write("please enter text what you want to save\n");
+    
 
     stdin.on("data", text=>{ 
-        let userInput=text.toString();
-        if( userInput==='.exit()'){
-            console.log('you type .exit ');
+        let userInput=text.toString().trim();
+
+        if( userInput==='exit'){
+            console.log('you type exit ');
             console.log('\ngood bye!');
             process.exit()
         }
