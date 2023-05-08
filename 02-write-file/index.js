@@ -1,4 +1,5 @@
 const fs = require ('fs');
+const { default: test } = require('node:test');
 const path = require('path');
 const { exit } = require('process');
 const {stdin, stdout}=process;
@@ -10,7 +11,13 @@ fs.writeFile('02-write-file/task2.txt',' ', function(err,file){
 
     stdout.write("please enter text what you want to save\n");
 
-    stdin.on("data", userInput=>{ 
+    stdin.on("data", text=>{ 
+        let userInput=text.toString();
+        if( userInput==='.exit()'){
+            console.log('you type .exit ');
+            console.log('\ngood bye!');
+            process.exit()
+        }
         stdout.write("this text to be saved-  "),
         stdout.write(userInput)
 
@@ -18,7 +25,6 @@ fs.writeFile('02-write-file/task2.txt',' ', function(err,file){
         if (err)throw err;
         console.log('your text saved')
     })});
-
 
     process.on('SIGINT',()=>{
         console.log('you press Ctrl+c to exit process');
