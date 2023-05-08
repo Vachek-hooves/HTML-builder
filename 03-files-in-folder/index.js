@@ -11,11 +11,12 @@ fs.readdir(root, (err, files) => {
     const eachFile= path.join(root, file);
     const eachFileExt=path.extname(eachFile);
 
-    fs.stat(eachFile,(err,stat)=>{
+    fs.lstat(eachFile,(err,stat)=>{
         if (err){
             console.log(err)
         }
         // console.log(stat.size)
+        
         console.log(file +" - "+ eachFileExt +" - "+ ((stat.size)/1024).toFixed(3) + ' kb');
     })
 
