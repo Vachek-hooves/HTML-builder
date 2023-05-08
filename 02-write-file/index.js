@@ -1,10 +1,9 @@
 const fs = require ('fs');
-const { default: test } = require('node:test');
-const path = require('path');
+// const { default: test } = require('node:test');
 const { exit } = require('process');
 const {stdin, stdout}=process;
 
-// file creating txt
+
 fs.writeFile('02-write-file/task2.txt',' ', function(err,file){
     if (err) throw err;
     console.log('new txt file created');
@@ -25,7 +24,7 @@ fs.writeFile('02-write-file/task2.txt',' ', function(err,file){
 
     fs.appendFile('02-write-file/task2.txt', userInput, function(err){
         if (err)throw err;
-        console.log('your text saved')
+        // console.log(' - your text saved')
     })});
 
     process.on('SIGINT',()=>{
