@@ -15,9 +15,15 @@ fs.readdir(root, (err, files) => {
         if (err){
             console.log(err)
         }
-        // console.log(stat.size)
+        if (eachFileExt === '.js' && !stat.isDirectory() && file !=='index.js'){
+            console.log(file +" - "+ eachFileExt +" - "+ ((stat.size)/1024).toFixed(3) + ' kb');
+        } else if (!eachFileExt || stat.isDirectory()){
+            return;
+        }else{
+            console.log(file +" - "+ eachFileExt +" - "+ ((stat.size)/1024).toFixed(3) + ' kb');
+        }
         
-        console.log(file +" - "+ eachFileExt +" - "+ ((stat.size)/1024).toFixed(3) + ' kb');
+        
     })
 
   });
